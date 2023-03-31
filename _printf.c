@@ -69,9 +69,9 @@ int printWord(char w)
 int _printf(const char *format, ...)
 {
 	B8 D10[] = {
-		{"c", printc},
-		{"s", printQ},
-		{"%", print1},
+		{'c', printc},
+		{'s', printQ},
+		{'%', print1},
 		{'\0', NULL},
 	};
 	int i, j;
@@ -90,7 +90,7 @@ int _printf(const char *format, ...)
 			j = 0;
 			while (D10[j].god)
 			{
-				if (*D10[j].god == format[i + 1])
+				if (D10[j].god == format[i + 1])
 				{
 					h += D10[j].a1(pf);
 					i++;
