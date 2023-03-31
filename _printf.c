@@ -105,7 +105,6 @@ int _printf(const char *format, ...)
 		h += printWord(format[i]);
 		i++;
 	}
-	i = 0;
 	va_end(pf);
 	return (h);
 }
