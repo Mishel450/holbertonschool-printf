@@ -55,10 +55,10 @@ int print1(__attribute__((unused)) va_list pf)
  * @w: the word to prints.
  * Return: 1.
  */
-int printWord(char w)
+int printWord(int w)
 {
-write(1, &w, 1);
-return (1);
+	write(1, &w, 1);
+	return (1);
 }
 
 /**
@@ -102,9 +102,10 @@ int _printf(const char *format, ...)
 				h += D10[2].a1(pf);
 		}
 		else
-		h += printWord(format[i]);
+			h += printWord(format[i]);
 		i++;
 	}
+	i = 0;
 	va_end(pf);
 	return (h);
 }
