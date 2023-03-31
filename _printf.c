@@ -79,7 +79,7 @@ int _printf(const char *format, ...)
 	int h = 0;
 	va_list pf;
 
-	if (!format && strlen(format) == 1 && format[0] == '%')
+	if (!format || strlen(format) == 1 && format[0] == '%')
 		return (-1);
 	va_start(pf, format);
 	while (format[i])
