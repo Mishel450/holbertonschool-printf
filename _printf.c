@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <string.h>
 /**
  * printc - prints a character.
  * @pf: is the va_list of format.
@@ -78,7 +79,7 @@ int _printf(const char *format, ...)
 	int h = 0;
 	va_list pf;
 
-	if (!format)
+	if (!format && strlen(format) == 1 && format[0] == '%')
 		return (-1);
 	va_start(pf, format);
 	while (format[i])
