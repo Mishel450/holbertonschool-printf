@@ -45,7 +45,8 @@ int printQ(va_list pf)
 int print1(__attribute__((unused)) va_list pf)
 {
 	char m = '%';
-	write (1, &m, 1);
+
+	write(1, &m, 1);
 	return (1);
 }
 
@@ -57,10 +58,10 @@ int print1(__attribute__((unused)) va_list pf)
 int _printf(const char *format, ...)
 {
 	B8 D10[] = {
-		{'c' , printc},
-		{'s' , printQ},
-		{'%' , print1},
-		{'\0' , NULL},
+		{'c', printc},
+		{'s', printQ},
+		{'%', print1},
+		{'\0', NULL},
 	};
 	int i, j;
 	int h = 0;
@@ -80,24 +81,20 @@ int _printf(const char *format, ...)
 			{
 				if (format[i + 1] == D10[j].god)
 				{
-					h += D10[j].a1(pf);			
+					h += D10[j].a1(pf);
 					i++;
 					break;
 				}
 				j++;
 			}
 			if (D10[j].god == '\0')
-			{
 				h += D10[2].a1(pf);
-			}
 		}
 		else
-		{
-			write(1, &format[i], 1);
-			h++;
-		}
+		h += D10[0].a1(pf);
 		i++;
 	}
+	i = 0;
 	va_end(pf);
-	return (h);	
+	return (h);
 }
