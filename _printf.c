@@ -85,10 +85,10 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (!format[i + 1])
+			if (format[i + 1] == '\0' )
 				return (-1);
 			j = 0;
-			while (D10[j].god)
+			while (D10[j].god != '\0')
 			{
 				if (D10[j].god == format[i + 1])
 				{
@@ -98,7 +98,7 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
-			if (!D10[j].god)
+			if (D10[j].god == '\0')
 				h += D10[2].a1(pf);
 		}
 		else
