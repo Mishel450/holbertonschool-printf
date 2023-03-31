@@ -69,28 +69,28 @@ int printWord(char w)
 int _printf(const char *format, ...)
 {
 	B8 D10[] = {
-		{'c', printc},
-		{'s', printQ},
-		{'%', print1},
+		{"c", printc},
+		{"s", printQ},
+		{"%", print1},
 		{'\0', NULL},
 	};
 	int i, j;
 	int h = 0;
 	va_list pf;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
 	va_start(pf, format);
-	while (format && format[i] != '\0')
+	while (format[i])
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '\0')
+			if (!format[i + 1])
 				return (-1);
 			j = 0;
-			while (D10[j].god != '\0')
+			while (D10[j].god)
 			{
-				if (format[i + 1] == D10[j].god)
+				if (*D10[j].god == format[i + 1])
 				{
 					h += D10[j].a1(pf);
 					i++;
@@ -98,7 +98,7 @@ int _printf(const char *format, ...)
 				}
 				j++;
 			}
-			if (D10[j].god == '\0')
+			if (!D10[j].god)
 				h += D10[2].a1(pf);
 		}
 		else

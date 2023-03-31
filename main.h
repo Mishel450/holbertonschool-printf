@@ -14,7 +14,7 @@ int _printf(const char *format, ...);
  */
 typedef struct C9
 {
-int god;
+char *god;
 int (*a1)(va_list pf);
 } B8;
 int printc(va_list pf);
