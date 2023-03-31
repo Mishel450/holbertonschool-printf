@@ -20,6 +20,6 @@ int (*a1)(va_list pf);
 int printc(va_list pf);
 int printQ(va_list pf);
 int print1(va_list pf);
-int printWord(int w);
+int printWord(char w);
 
 #endif

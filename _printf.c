@@ -55,7 +55,7 @@ int print1(__attribute__((unused)) va_list pf)
  * @w: the word to prints.
  * Return: 1.
  */
-int printWord(int w)
+int printWord(char w)
 {
 	write(1, &w, 1);
 	return (1);
