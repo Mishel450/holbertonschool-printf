@@ -74,7 +74,7 @@ int _printf(const char *format, ...)
 		{'%', print1},
 		{'\0', NULL},
 	};
-	int i, j;
+	int i, j, q;
 	int h = 0;
 	va_list pf;
 
@@ -102,8 +102,11 @@ int _printf(const char *format, ...)
 				h += D10[2].a1(pf);
 		}
 		else
-			h += printWord(format[i]);
-		i++;
+		{
+			q = format[i];
+			h += printWord(q);
+		}
+			i++;
 	}
 	i = 0;
 	va_end(pf);
