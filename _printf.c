@@ -51,6 +51,17 @@ int print1(__attribute__((unused)) va_list pf)
 }
 
 /**
+ * printWord - prints the word.
+ * @w: the word to prints.
+ * Return: 1.
+ */
+int printWord(char w)
+{
+write(1, &w, 1);
+return (1);
+}
+
+/**
  * _printf - is our version of printf.
  * @format: the thing to print.
  * Return: h (len of the word printed).
@@ -91,7 +102,7 @@ int _printf(const char *format, ...)
 				h += D10[2].a1(pf);
 		}
 		else
-		h += D10[0].a1(pf);
+		h += printWord(format[i]);
 		i++;
 	}
 	i = 0;
