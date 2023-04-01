@@ -10,32 +10,32 @@
  */
 int printC(va_list pf)
 {
-	char a;
+	char c;
 
-	a = va_arg(pf, int);
-	write(1, &a, 1);
+	c = va_arg(pf, int);
+	write(1, &c, 1);
 	return (1);
 }
 
 /**
  * printS - prints a string.
  * @pf: is the va_list of format.
- * Return: numbers (the len of the string).
+ * Return: sizeOfString (the len of the string).
  */
 int printS(va_list pf)
 {
-	char *b;
-	int numbers = 0;
+	char *string;
+	int sizeOfString = 0;
 
-	b = va_arg(pf, char *);
-	if (b == NULL)
-		b = "(null)";
-	while (b[numbers] != '\0')
+	string = va_arg(pf, char *);
+	if (string == NULL)
+		string = "(null)";
+	while (string[sizeOfString] != '\0')
 	{
-		write(1, &b[numbers], 1);
-		numbers++;
+		write(1, &string[sizeOfString], 1);
+		sizeOfString++;
 	}
-	return (numbers);
+	return (sizeOfString);
 }
 
 /**
