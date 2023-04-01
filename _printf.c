@@ -3,51 +3,33 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * printC - prints a character.
+ * printI - prints a int.
  * @pf: is the va_list of format.
- * Return: 1 (len of the character).
+ * Return: 1 (len of int).
  */
-int printC(va_list pf)
+int printInt(va_list pf)
 {
-	char a;
+	int N = va_arg(pf, int);
+	int n = 1, size = 0;
+	unsigned int num = N;
+	int plus;
 
-	a = va_arg(pf, int);
-	write(1, &a, 1);
-	return (1);
-}
-
-/**
- * printS - prints a string.
- * @pf: is the va_list of format.
- * Return: numbers (the len of the string).
- */
-int printS(va_list pf)
-{
-	char *b;
-	int numbers = 0;
-
-	b = va_arg(pf, char *);
-	if (b == NULL)
-		b = "(null)";
-	while (b[numbers] != '\0')
+	if (n < 0)
 	{
-		write(1, &b[numbers], 1);
-		numbers++;
+		write(1, &"-", 1);
+		size++;
 	}
-	return (numbers);
-}
-
-/**
- * printM - prints a %.
- * @pf: is the va_list of format.
- * Return: 1 (len of %).
- */
-int printM(__attribute__((unused)) va_list pf)
-{
-	char m = '%';
-
-	write(1, &m, 1);
-	return (1);
+	while (num / n > 9)
+		n *= 10;
+	while (n != 0)
+	{
+		plus = 0 + num / n;
+		write(1, &plus, 1);
+		size++;
+		num %= n;
+		n /= 10;
+	}
+	return (size);
 }
 
 /**
@@ -62,6 +44,8 @@ int checker(va_list pf, char C)
 		{"c", printC},
 		{"s", printS},
 		{"%", printM},
+		{"d", printInt},
+		{"i", printInt},
 		{'\0', NULL},
 	};
 

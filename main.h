@@ -20,6 +20,6 @@ int (*a1)(va_list pf);
 int printC(va_list pf);
 int printS(va_list pf);
 int printM(va_list pf);
+int printInt(va_list pf);
 int checker(va_list pf, char C);
-
 #endif
