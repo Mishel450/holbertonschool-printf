@@ -3,7 +3,7 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * printc - prints a character.
+ * printC - prints a character.
  * @pf: is the va_list of format.
  * Return: 1 (len of the character).
  */
@@ -17,7 +17,7 @@ int printC(va_list pf)
 }
 
 /**
- * printQ - prints a string.
+ * printS - prints a string.
  * @pf: is the va_list of format.
  * Return: numbers (the len of the string).
  */
@@ -38,7 +38,7 @@ int printS(va_list pf)
 }
 
 /**
- * print1 - prints a %.
+ * printM - prints a %.
  * @pf: is the va_list of format.
  * Return: 1 (len of %).
  */
@@ -51,20 +51,9 @@ int printM(__attribute__((unused)) va_list pf)
 }
 
 /**
- * printWord - prints the word.
- * @w: the word to prints.
- * Return: 1.
- */
-int printWord(char w)
-{
-	write(1, &w, 1);
-	return (1);
-}
-
-/**
  * checker - checks what is the character and prints it
  * @pf: is the va_list of format
- * @c: is format[i + 1].
+ * @C: is format[i + 1].
  * Return: the len of the thing printed
  */
 int checker(va_list pf, char C)
@@ -91,7 +80,8 @@ int checker(va_list pf, char C)
 	if (!D10[j].god)
 	{
 		h += D10[2].a1(pf);
-	h += printWord(C);
+		write(1, &C, 1);
+		h++;
 	}
 	return (h);
 }
@@ -114,16 +104,16 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '\0' )
+			if (format[i + 1] == '\0')
 				return (-1);
-			else
-			{
-				h += checker(pf, format[i + 1]);
-				i++;
-			}
+			h += checker(pf, format[i + 1]);
+			i++;
 		}
 		else
-			h += printWord(format[i]);
+		{
+			write(1, &format[i], 1);
+			h++;
+		}
 		i++;
 	}
 	va_end(pf);
