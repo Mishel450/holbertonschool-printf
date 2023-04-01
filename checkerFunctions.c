@@ -58,28 +58,28 @@ int printM(__attribute__((unused)) va_list pf)
  */
 int printInt(va_list pf)
 {
-int n = va_arg(pf, int);
-        int d, size;
-        unsigned int num;
+	int n = va_arg(pf, int);
+	int d, size;
+	unsigned int num;
 
-        d = 1;
-        size = 0;
-        num = n;
-        if (n < 0)
-        {
-                putchar('-');
-                size++;
-                num = -n;
-        }
+	d = 1;
+	size = 0;
+	num = n;
+	if (n < 0)
+	{
+		putchar('-');
+		size++;
+		num = -n;
+	}
 
-        while (num / d > 9)
-                d *= 10;
-        while (d != 0)
-        {
-                putchar('0' + num / d);
-                size++;
-                num %= d;
-                d /= 10;
-        }
-        return (size);
+	while (num / d > 9)
+		d *= 10;
+	while (d != 0)
+	{
+		putchar('0' + num / d);
+		size++;
+		num %= d;
+		d /= 10;
+	}
+	return (size);
 }
