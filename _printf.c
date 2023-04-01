@@ -2,32 +2,36 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 /**
- * printI - prints a int.
+ * printInt - prints a int.
  * @pf: is the va_list of format.
- * Return: 1 (len of int).
+ * Return: size (len of int).
  */
 int printInt(va_list pf)
 {
-	int N = va_arg(pf, int);
-	int n = 1, size = 0;
-	unsigned int num = N;
-	int plus;
+int n = va_arg(pf, int);
+	int d, size;
+	unsigned int num;
 
+	d = 1;
+	size = 0;
+	num = n;
 	if (n < 0)
 	{
-		write(1, &"-", 1);
+		putchar('-');
 		size++;
+		num = -n;
 	}
-	while (num / n > 9)
-		n *= 10;
-	while (n != 0)
+
+	while (num / d > 9)
+		d *= 10;
+	while (d != 0)
 	{
-		plus = 0 + num / n;
-		write(1, &plus, 1);
+		putchar('0' + num / d);
 		size++;
-		num %= n;
-		n /= 10;
+		num %= d;
+		d /= 10;
 	}
 	return (size);
 }

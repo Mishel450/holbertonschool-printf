@@ -22,4 +22,5 @@ int printS(va_list pf);
 int printM(va_list pf);
 int printInt(va_list pf);
 int checker(va_list pf, char C);
+int _putchar(char c);
 #endif
