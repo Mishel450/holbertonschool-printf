@@ -38,7 +38,6 @@ int main(void)
 	BLUE;
 	printf("\nTEST WITHOUT ARGUMENTS:\n\n");
 	RESET;
-	/**
 	printf("Test 1");
 	printf("\nexpected: ");
 	a = printf("Buenas Noches America");
@@ -245,7 +244,6 @@ int main(void)
 	b = _printf("%s", NULL);
 	cont = cont + output(a,b);
 	printf("\n---------------\n");
-	*/
 	printf("Test 26");
 	printf("\nexpected: ");
 	a = printf("Le dicen %c%c la rompe corazones, %s %s", 'l', 'a', "falsas", NULL);

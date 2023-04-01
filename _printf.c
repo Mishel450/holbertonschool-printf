@@ -7,7 +7,7 @@
  * @pf: is the va_list of format.
  * Return: 1 (len of the character).
  */
-int printc(va_list pf)
+int printC(va_list pf)
 {
 	char a;
 
@@ -21,7 +21,7 @@ int printc(va_list pf)
  * @pf: is the va_list of format.
  * Return: numbers (the len of the string).
  */
-int printQ(va_list pf)
+int printS(va_list pf)
 {
 	char *b;
 	int numbers = 0;
@@ -42,7 +42,7 @@ int printQ(va_list pf)
  * @pf: is the va_list of format.
  * Return: 1 (len of %).
  */
-int print1(__attribute__((unused)) va_list pf)
+int printM(__attribute__((unused)) va_list pf)
 {
 	char m = '%';
 
@@ -62,23 +62,52 @@ int printWord(char w)
 }
 
 /**
+ * checker - checks what is the character and prints it
+ * @pf: is the va_list of format
+ * @c: is format[i + 1].
+ * Return: the len of the thing printed
+ */
+int checker(va_list pf, char C)
+{
+	B8 D10[] = {
+		{"c", printC},
+		{"s", printS},
+		{"%", printM},
+		{'\0', NULL},
+	};
+
+	int j = 0;
+	int h = 0;
+
+	while (D10[j].god)
+	{
+		if (*D10[j].god == C)
+		{
+			h += D10[j].a1(pf);
+			break;
+		}
+		j++;
+	}
+	if (!D10[j].god)
+	{
+		h += D10[2].a1(pf);
+	h += printWord(C);
+	}
+	return (h);
+}
+
+/**
  * _printf - is our version of printf.
  * @format: the thing to print.
  * Return: h (len of the word printed).
  */
 int _printf(const char *format, ...)
 {
-	B8 D10[] = {
-		{'c', printc},
-		{'s', printQ},
-		{'%', print1},
-		{'\0', NULL},
-	};
-	int i, j;
+	int i = 0;
 	int h = 0;
 	va_list pf;
 
-	if (format == '\0')
+	if (!format)
 		return (-1);
 	va_start(pf, format);
 	while (format[i] != '\0')
@@ -87,19 +116,11 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0' )
 				return (-1);
-			j = 0;
-			while (D10[j].god != '\0')
+			else
 			{
-				if (D10[j].god == format[i + 1])
-				{
-					h += D10[j].a1(pf);
-					i++;
-					break;
-				}
-				j++;
+				h += checker(pf, format[i + 1]);
+				i++;
 			}
-			if (D10[j].god == '\0')
-				h += D10[2].a1(pf);
 		}
 		else
 			h += printWord(format[i]);

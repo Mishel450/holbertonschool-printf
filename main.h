@@ -14,12 +14,13 @@ int _printf(const char *format, ...);
  */
 typedef struct C9
 {
-char god;
+char *god;
 int (*a1)(va_list pf);
 } B8;
-int printc(va_list pf);
-int printQ(va_list pf);
-int print1(va_list pf);
+int printC(va_list pf);
+int printS(va_list pf);
+int printM(va_list pf);
 int printWord(char w);
+int checker(va_list pf, char C);
 
 #endif
