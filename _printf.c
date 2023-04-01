@@ -23,18 +23,18 @@ int checker(va_list pf, char C)
 	int i = 0;
 	int size = 0;
 
-	while (D10[i].god)
+	while (D10[i].c)
 	{
-		if (*D10[i].god == C)
+		if (*D10[i].c == C)
 		{
-			size += D10[i].a1(pf);
+			size += D10[i].st(pf);
 			break;
 		}
 		i++;
 	}
-	if (!D10[i].god)
+	if (!D10[i].c)
 	{
-		size += D10[2].a1(pf);
+		size += D10[2].st(pf);
 		write(1, &C, 1);
 		size++;
 	}

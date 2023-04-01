@@ -7,15 +7,13 @@ int _printf(const char *format, ...);
 
 /**
  * struct C9 - the structure used for _printf.
- * @god: .
- * @a1: .
- *
- * Description: .
+ * @c: character we look for.
+ * @st: function to be used.
  */
 typedef struct C9
 {
-char *god;
-int (*a1)(va_list pf);
+char *c;
+int (*st)(va_list pf);
 } B8;
 int printC(va_list pf);
 int printS(va_list pf);
