@@ -4,43 +4,10 @@
 #include <unistd.h>
 #include <stdio.h>
 /**
- * printInt - prints a int.
- * @pf: is the va_list of format.
- * Return: size (len of int).
- */
-int printInt(va_list pf)
-{
-int n = va_arg(pf, int);
-	int d, size;
-	unsigned int num;
-
-	d = 1;
-	size = 0;
-	num = n;
-	if (n < 0)
-	{
-		putchar('-');
-		size++;
-		num = -n;
-	}
-
-	while (num / d > 9)
-		d *= 10;
-	while (d != 0)
-	{
-		putchar('0' + num / d);
-		size++;
-		num %= d;
-		d /= 10;
-	}
-	return (size);
-}
-
-/**
- * checker - checks what is the character and prints it
+ * checker - checks what is the character and prints it.
  * @pf: is the va_list of format
- * @C: is format[i + 1].
- * Return: the len of the thing printed
+ * @C: is format[i + 1] and the character to check.
+ * Return: the len of the character or string printed.
  */
 int checker(va_list pf, char C)
 {
@@ -53,36 +20,36 @@ int checker(va_list pf, char C)
 		{'\0', NULL},
 	};
 
-	int j = 0;
-	int h = 0;
+	int i = 0;
+	int size = 0;
 
-	while (D10[j].god)
+	while (D10[i].god)
 	{
-		if (*D10[j].god == C)
+		if (*D10[i].god == C)
 		{
-			h += D10[j].a1(pf);
+			size += D10[i].a1(pf);
 			break;
 		}
-		j++;
+		i++;
 	}
-	if (!D10[j].god)
+	if (!D10[i].god)
 	{
-		h += D10[2].a1(pf);
+		size += D10[2].a1(pf);
 		write(1, &C, 1);
-		h++;
+		size++;
 	}
-	return (h);
+	return (size);
 }
 
 /**
  * _printf - is our version of printf.
- * @format: the thing to print.
- * Return: h (len of the word printed).
+ * @format: the characters to print.
+ * Return: sizeAll (len of the word printed).
  */
 int _printf(const char *format, ...)
 {
 	int i = 0;
-	int h = 0;
+	int sizeAll = 0;
 	va_list pf;
 
 	if (!format)
@@ -94,16 +61,16 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0')
 				return (-1);
-			h += checker(pf, format[i + 1]);
+			sizeAll += checker(pf, format[i + 1]);
 			i++;
 		}
 		else
 		{
 			write(1, &format[i], 1);
-			h++;
+			sizeAll++;
 		}
 		i++;
 	}
 	va_end(pf);
-	return (h);
+	return (sizeAll);
 }

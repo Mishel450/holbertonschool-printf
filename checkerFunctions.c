@@ -2,6 +2,7 @@
 #include <stddef.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 /**
  * printC - prints a character.
  * @pf: is the va_list of format.
@@ -51,17 +52,34 @@ int printM(__attribute__((unused)) va_list pf)
 }
 
 /**
- * printI - prints a int.
+ * printInt - prints a int.
  * @pf: is the va_list of format.
- * Return: 1 (len of int).
+ * Return: size (len of int).
  */
-/**
 int printInt(va_list pf)
 {
-	char I;
+int n = va_arg(pf, int);
+        int d, size;
+        unsigned int num;
 
-	I = va_arg(pf, int);
-	write(1, &I, 1);
-	return (1);
+        d = 1;
+        size = 0;
+        num = n;
+        if (n < 0)
+        {
+                putchar('-');
+                size++;
+                num = -n;
+        }
+
+        while (num / d > 9)
+                d *= 10;
+        while (d != 0)
+        {
+                putchar('0' + num / d);
+                size++;
+                num %= d;
+                d /= 10;
+        }
+        return (size);
 }
-*/
